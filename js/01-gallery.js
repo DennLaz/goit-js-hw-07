@@ -36,7 +36,18 @@ function openModal(eve) {
 
   const currentUrlEl = currentImg.dataset.source;
 
-  basicLightbox
-    .create(`<img width="1280" height="auto" src="${currentUrlEl}">`)
-    .show();
+  const basiBox = basicLightbox.create(
+    `<img width="1280" height="auto" src="${currentUrlEl}">`
+  );
+
+  basiBox.show();
+
+  window, addEventListener("keydown", closeEsc);
+
+  function closeEsc(e) {
+    if (e.code !== "Escape") {
+      return;
+    }
+    basiBox.close();
+  }
 }
