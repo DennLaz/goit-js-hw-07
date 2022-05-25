@@ -48,6 +48,8 @@ function openModal(eve) {
     if (e.code !== "Escape") {
       return;
     }
-    basiBox.close();
+    basiBox.close(() => {
+      window, removeEventListener("keydown", closeEsc);
+    });
   }
 }
