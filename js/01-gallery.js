@@ -37,19 +37,19 @@ function openModal(eve) {
   const currentUrlEl = currentImg.dataset.source;
 
   const basiBox = basicLightbox.create(
-    `<img width="1280" height="auto" src="${currentUrlEl}">`
+    `<img width="1280" height="auto" src="${currentUrlEl}">`,
+    {
+      onShow: (basiBox) => window.addEventListener("keydown", closeEsc),
+      onClose: (basiBox) => window.removeEventListener("keydown", closeEsc),
+    }
   );
 
   basiBox.show();
-
-  window, addEventListener("keydown", closeEsc);
 
   function closeEsc(e) {
     if (e.code !== "Escape") {
       return;
     }
-    basiBox.close(() => {
-      window, removeEventListener("keydown", closeEsc);
-    });
+    basiBox.close();
   }
 }
